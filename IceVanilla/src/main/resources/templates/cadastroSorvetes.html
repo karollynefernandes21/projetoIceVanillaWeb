@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${sorvete.id == null} ? 'Cadastro de Sorvetes' : 'Edição de Sorvete'"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link th:href="@{/css/styleCadastroSorvetes.css}" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-custom" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+                <span class="text">Ice Vanilla</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-2">
+        <h2 class="text-custom" th:text="${sorvete.id == null} ? 'Cadastro de Sorvetes' : 'Edição de Sorvete'"></h2>
+        <h6 th:text="${sorvete.id == null} ? 'Insira abaixo os dados do sorvete que deseja cadastrar.' : 'Altere os dados do sorvete e salve.'"></h6>
+
+        <form th:action="${sorvete.id == null} ? @{/sorvetes} : @{/sorvetes/{id}/atualizar(id=${sorvete.id})}"
+              th:object="${sorvete}" 
+              method="POST">
+            
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="formulario">
+                <label for="sabor">Sabor:</label>
+                <input type="text" th:field="*{sabor}" id="sabor" required class="form-control"/>
+                <br>
+                <label for="descricao">Descrição:</label>
+                <textarea th:field="*{descricao}" id="descricao" rows="4" cols="23" required class="form-control">Insira a descrição aqui...</textarea>
+                <br>
+                <label for="preco">Preço:</label>
+                <input type="number" th:field="*{preco}" id="preco" required step="0.01" class="form-control"/>
+                <br>
+            </div>
+            
+            <div class="col mt-3">
+                <button type="submit" class="btn btn-warning" th:text="${sorvete.id == null} ? 'Cadastrar' : 'Atualizar'"></button>
+                
+                <a th:href="@{/sorvetes}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <nav class="navbar navbar-custom mt-5" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+            </a>
+            <div class="p-custom">
+                <p>Todos os direitos reservados ©</p>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

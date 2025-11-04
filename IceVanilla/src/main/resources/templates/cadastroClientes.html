@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${cliente.id == null} ? 'Cadastro de Clientes' : 'Edição de Cliente'"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link th:href="@{/css/styleCadastroClientes.css}" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-custom" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+                <span class="text">Ice Vanilla</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-2">
+        <h2 class="text-custom" th:text="${cliente.id == null} ? 'Cadastro de Clientes' : 'Edição de Cliente'"></h2>
+        <h6 th:text="${cliente.id == null} ? 'Insira abaixo os dados do cliente que deseja cadastrar.' : 'Altere os dados do cliente e salve.'"></h6>
+
+        <form th:action="${cliente.id == null} ? @{/clientes} : @{/clientes/{id}/atualizar(id=${cliente.id})}"
+              th:object="${cliente}" 
+              method="POST">
+            
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="formulario">
+                <label for="nome">Nome:</label>
+                <input type="text" th:field="*{nome}" id="nome" required class="form-control"/>
+                <br>
+                <label for="email">E-mail:</label>
+                <input type="email" th:field="*{email}" id="email" required class="form-control"/>
+                <br>
+                <label for="cpf">Cpf:</label>
+                <input type="text" th:field="*{cpf}" id="cpf" required class="form-control"/>
+                <br>
+                <label for="telefone">Telefone:</label>
+                <input type="text" th:field="*{telefone}" id="telefone" required class="form-control"/>
+                <br>
+            </div>
+        
+            <div class="col mt-3">
+                <button type="submit" class="btn btn-warning" th:text="${cliente.id == null} ? 'Cadastrar' : 'Atualizar'"></button>
+                
+                <a th:href="@{/clientes}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <nav class="navbar navbar-custom mt-5" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+            </a>
+            <div class="p-custom"><p>Todos os direitos reservados ©</p></div>
+        </div>
+    </nav>  
+</body>
+</html>

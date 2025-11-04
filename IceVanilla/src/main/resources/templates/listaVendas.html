@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Vendas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/styleListaVendas.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        xintegrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-custom" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+                <span class="text">Ice Vanilla</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+
+        <h2 class="text-custom">Listagem de Vendas</h2>
+        <h6>Abaixo você pode conferir os dados das vendas cadastradas.</h6>
+        
+        <!-- Mensagens de feedback (exclusão) -->
+        <div th:if="${mensagemSucesso}" class="alert alert-success mt-3" role="alert" th:text="${mensagemSucesso}"></div>
+        <div th:if="${mensagemErro}" class="alert alert-danger mt-3" role="alert" th:text="${mensagemErro}"></div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered mt-4 align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Data/Hora</th>
+                        <th>Valor Total</th>
+                        <th>Forma de Pagamento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="venda : ${vendas}">
+                        <td th:text="${venda.id}"></td>
+                        
+                        <td th:text="${venda.cliente.nome}"></td> 
+                        
+                        <td th:text="${#temporals.format(venda.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+                        
+                        <td th:text="${#numbers.formatCurrency(venda.valorTotal)}"></td>
+                        
+                        <td th:text="${venda.formaPagamento}"></td>
+
+                        <td>
+                            <a th:href="@{/vendas/{id}(id=${venda.id})}" class="btn btn-sm btn-success btn-detalhes">Ver Detalhes</a>
+                            
+                            <!-- Botão de exclusão -->
+                            <a th:href="@{/vendas/excluir/{id}(id=${venda.id})}" 
+                               class="btn btn-sm btn-danger" 
+                               onclick="return confirm('Tem certeza que deseja excluir esta venda?');">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+                    
+                    <tr th:if="${vendas.empty}">
+                        <td colspan="6" class="text-center">Nenhuma venda encontrada.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a th:href="@{/vendas/nova}" class="btn btn-warning my-3">Nova Venda</a>
+        <a th:href="@{/}" class="btn btn-secondary">Voltar</a>
+    </div>
+
+    <!-- Footer -->
+    <nav class="navbar navbar-custom mt-5" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+            </a>
+            <div class="p-custom">
+                <p>Todos os direitos reservados ©</p>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

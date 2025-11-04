@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Listagem de Sorvetes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:href="@{/css/styleListaSorvetes.css}" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-custom" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/}">
+                    <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                         class="d-inline-block align-text-top" />
+                    <span class="text">Ice Vanilla</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="container my-5">
+
+            <h2 class="text-custom">Listagem de Sorvetes</h2>
+            <h6>Abaixo você pode conferir os dados dos sorvetes cadastrados.</h6>
+
+            <table class="table table-striped table-bordered mt-4">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Sabor</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Ações</th> </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="sorvete : ${sorvetes}">
+                        <td th:text="${sorvete.sabor}">Sabor Fictício</td>
+                        <td th:text="${sorvete.descricao}">Descrição Fictícia do Sorvete</td>
+                        <td th:text="${#numbers.formatCurrency(sorvete.preco)}"></td>
+
+                        <td>
+                            <a th:href="@{/sorvetes/{id}/editar(id=${sorvete.id})}" 
+                               class="btn btn-info btn-sm me-2">Atualizar</a>
+
+                            <a th:href="@{/sorvetes/{id}/excluir(id=${sorvete.id})}" 
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Tem certeza que deseja excluir este sorvete?');">Excluir</a>
+                        </td>
+                    </tr>
+
+                    <tr th:if="${sorvetes.empty}">
+                        <td colspan="4">Nenhum sorvete cadastrado.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="d-flex gap-2 mb-3">
+                <a th:href="@{/sorvetes/novo}" class="btn btn-warning">Novo Sorvete</a>
+                <a th:href="@{/}" class="btn btn-secondary">Voltar</a>
+            </div>
+
+        </div>
+
+        <nav class="navbar navbar-custom mt-5" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/}">
+                    <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                         class="d-inline-block align-text-top" />
+                </a>
+                <div class="p-custom">
+                    <p>Todos os direitos reservados ©</p>
+                </div>
+            </div>
+        </nav>
+    </body>
+</html>

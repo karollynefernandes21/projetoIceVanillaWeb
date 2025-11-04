@@ -1,0 +1,60 @@
+.navbar-custom {
+    background-color: #b2ace1;
+    margin-bottom: 35px;
+    color: black;
+}
+
+.text {
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    margin-left: 20px;
+    color: black;
+    text-decoration: none;
+}
+
+.text-custom {
+    color: #FFD700;
+}
+
+.button-custom {
+    background-color: #FFD700;
+}
+
+.button-custom:hover {
+    background-color: #e91e63;
+}
+
+.venda-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    padding: 20px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+.btn-lixeira {
+    padding: 0;
+    border: none;
+    background: none;
+    color: #dc3545;
+}
+
+.p-custom {
+    color: rgb(108, 108, 108);
+    width: 50%;
+    margin-left: 450px;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

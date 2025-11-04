@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> 
+
+<head>
+    <meta charset="UTF-8">
+    <title>Página Inicial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link th:href="@{/css/styleHome.css}" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-custom" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+                <span class="text">Ice Vanilla</span>
+            </a>
+            <ul>
+                <li><a th:href="@{/clientes}">Clientes</a></li>
+                <li><a th:href="@{/sorvetes}">Sorvetes</a></li>
+                <li><a th:href="@{/vendas/lista}">Vendas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5 mb-5">
+        <h2 class="card-text-custom">Bem vindo a Sorveteria Ice Vanilla!</h2>
+        <h6>Confira abaixo os sorvetes mais pedidos em nossa sorveteria.</h6>
+        <div class="row row-cols-1 row-cols-md-3 g-5 mb-5 mt-5">
+            <div class="col mb-5">
+                <div class="card shadow-sm">
+                    <img th:src="@{/img/casquinhaBaunilha.jpg}" class="card-img-top img-custom" alt="Casquinha de baunilha" />
+                    <div class="card-body">
+                        <h5 class="card-title card-text-custom">Casquinha de Baunilha Clássica</h5>
+                        <p>Cremoso e suave, o sabor tradicional que nunca sai de moda.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img th:src="@{/img/casquinhaMorango.jpg}" class="card-img-top img-custom" alt="Casquinha de morango" />
+                    <div class="card-body">
+                        <h5 class="card-title card-text-custom">Casquinha de Morango Natural</h5>
+                        <p>Feito com polpa de morango, leve e refrescante.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img th:src="@{/img/casquinhaChocolate.jpg}" class="card-img-top img-custom" alt="Casquinha de chocolate" />
+                    <div class="card-body">
+                        <h5 class="card-title card-text-custom">Casquinha de Chocolate Intenso</h5>
+                        <p>Rico em cacau, com textura aveludada e sabor marcante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav class="navbar navbar-custom mt-5" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/img/logoSorveteria.jpg}" alt="Logo da sorveteria Ice Vanilla" width="55" height="30"
+                    class="d-inline-block align-text-top" />
+            </a>
+            <div class="p-custom"><p>Todos os direitos reservados ©</p></div>
+        </div>
+    </nav>        
+</body>
+</html>
